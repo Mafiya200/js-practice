@@ -25,7 +25,7 @@ const isMobile = {
             isMobile.Windows());
     }
 };
-
+const body = document.querySelector(`body`);
 const allFullscreen = document.querySelectorAll(`.fullscreen`);
 
 let fullscreenSpanTrue = [];
@@ -48,12 +48,13 @@ for (let i = 0; i < fullscreenSpanTrue.length; i++) {
     let num = i + 1;
     span.textContent = `${num}`;
     
-    console.log(i % 2);
     if (i % 2) {
         span.classList.add(`_black`);
     }
 
 }
+
+
 
 
 
