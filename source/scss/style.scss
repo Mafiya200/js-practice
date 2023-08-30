@@ -1,0 +1,129 @@
+@import "nullstyle.scss";
+/* подключение_нулевых стилей */
+
+/* Шрифты */
+
+/* Шрифты_конец */
+
+
+///* Шаблоны *///
+
+$maxWidth:1200;
+$maxWidthMake:1920;
+@mixin adapt-value($property,$startSize,$minSize,$type){
+    $addSize:$startSize - $minSize;
+
+        @if $type == 1{
+            #{$property}:#{$startSize + px};
+            @media (max-width:#{$maxWidth + px}) {
+                #{$property}:calc(#{$minSize + px} + (#{$addSize} * ((100vw - 280px) / #{$maxWidth - 280})));
+            }
+        }
+        @else if $type == 2{
+            #{$property}:#{$startSize + px};
+            @media (min-width:#{$maxWidth + px}) {
+                #{$property}:calc(#{$minSize + px} + (#{$addSize} * ((100vw - 280px) / #{$maxWidthMake - 280})));
+            }
+        }
+        @else{
+            #{$property}:calc(#{$minSize + px} + (#{$addSize} * ((100vw - 280px) / #{$maxWidthMake - 280})));
+
+        }
+}
+
+//@include adaptiv-font(44, 12);///
+
+/* Шаблоны */
+body {
+    height          : 100%;
+    background-color: #333;
+    min-width       : 280px;
+    font-family     : "Lexend Mega", "Helvetica Neue", Helvetica, sans-serif;
+}
+
+html {
+    font-size: 20px;
+}
+
+////usuallys
+.container {
+    margin   : 0 auto;
+    padding  : 0 25px;
+    max-width: calc(#{$maxWidth * 1px} + 50px);
+}
+
+.wrapper {
+    min-height: 100vh;
+
+}
+
+
+
+.page{
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+.page__wrapper{
+    
+    display: flex;
+flex-wrap: wrap;
+flex-direction: column;
+} 
+
+.fullscreen {
+    position: relative;
+    display: flex;
+    flex: 1 0 100vh;
+    width: 100vw;
+    align-items: center;
+}
+.fullscreen__body {
+    display: flex;
+    justify-content: center;
+flex: 1 1 100%;
+    
+
+}
+.fullscreen__container {
+/*     position: relative;
+    z-index: 1;
+display: flex;
+flex-direction: column;
+justify-content: center;
+ */}
+.fullscreen__position{
+/* flex: 1 1 100%;
+display: flex;    
+justify-content: center;
+ */
+}
+.fullscreen__position span{
+    @include adapt-value("font-size",300,100,0);
+    color: aliceblue;
+}
+.fullscreen__position span._black{
+    color: black;
+}
+
+
+.fullscreen__bg {
+position: absolute;
+z-index: -1;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+.fullscreen__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.fullscreen__image  img{
+object-fit: cover;
+width: 100%;
+height: 100%;
+}
